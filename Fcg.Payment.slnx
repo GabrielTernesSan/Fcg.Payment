@@ -1,0 +1,21 @@
+<Solution>
+  <Folder Name="/Itens de Solução/">
+    <File Path=".gitignore" />
+  </Folder>
+  <Folder Name="/Solution Items/">
+    <File Path=".editorconfig" />
+  </Folder>
+  <Folder Name="/src/">
+    <Project Path="src/Fcg.Payment.Application/Fcg.Payment.Application.csproj" Id="154fa7ae-107c-49f7-86b3-de86e1a55167" />
+    <Project Path="src/Fcg.Payment.Common/Fcg.Payment.Common.csproj" Id="da80ae6f-d1eb-4aa2-8d7b-8d7bed0abfdb" />
+    <Project Path="src/Fcg.Payment.Domain/Fcg.Payment.Domain.csproj" Id="fd949640-90ed-45f8-8b01-2786ee3fcb70" />
+    <Project Path="src/Fcg.Payment.Infra/Fcg.Payment.Infra.csproj" Id="8119e497-d3e3-4926-892e-5fa6867fd5a0" />
+    <Project Path="src/Fcg.Payment.Proxy.Auth/Fcg.Payment.Proxy.Auth.csproj" Id="f1956342-385c-4065-8c52-760d10433e49" />
+    <Project Path="src/Fcg.Payment.Proxy.Games/Fcg.Payment.Proxy.Games.csproj" Id="eef8c0c3-0d10-4f43-9aaf-c2ab6d72f2c5" />
+    <Project Path="src/Fcg.Payment.Proxy.User/Fcg.Payment.Proxy.User.csproj" Id="54f737e4-4109-4d91-aaa9-be58158d0480" />
+    <Project Path="src/Fcg.Payment.Web/Fcg.Payment.Web.csproj" Id="7d2064e1-1825-4fda-b24e-501fc6fa9dff" />
+  </Folder>
+  <Folder Name="/tests/">
+    <Project Path="tests/Fcg.Payment.Tests/Fcg.Payment.Tests.csproj" Id="03381d97-c65e-462d-9b8a-5973ed77eda0" />
+  </Folder>
+</Solution>

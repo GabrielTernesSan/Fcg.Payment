@@ -1,0 +1,18 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Fcg.Payment.Common\Fcg.Payment.Common.csproj" />
+    <ProjectReference Include="..\Fcg.Payment.Domain\Fcg.Payment.Domain.csproj" />
+    <ProjectReference Include="..\Fcg.Payment.Infra\Fcg.Payment.Infra.csproj" />
+    <ProjectReference Include="..\Fcg.Payment.Proxy.Auth\Fcg.Payment.Proxy.Auth.csproj" />
+    <ProjectReference Include="..\Fcg.Payment.Proxy.Games\Fcg.Payment.Proxy.Games.csproj" />
+    <ProjectReference Include="..\Fcg.Payment.Proxy.User\Fcg.Payment.Proxy.User.csproj" />
+  </ItemGroup>
+
+</Project>
