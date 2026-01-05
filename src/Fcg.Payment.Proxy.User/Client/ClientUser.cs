@@ -41,7 +41,6 @@ namespace Fcg.Payment.Proxy.User
         public async Task<Response<GetUserResponse>> GetUserAsync(Guid userId)
         {
             var response = new Response<GetUserResponse>();
-
             var url = $"{_configuration.Url}/users/{userId}";
 
             try
@@ -55,7 +54,18 @@ namespace Fcg.Payment.Proxy.User
                 }
 
                 var json = await httpResponse.Content.ReadAsStringAsync();
-                response.Result = JsonSerializer.Deserialize<GetUserResponse>(json);
+
+                using JsonDocument doc = JsonDocument.Parse(json);
+
+                if (doc.RootElement.TryGetProperty("result", out JsonElement resultElement))
+                {
+                    var options = new JsonSerializerOptions { PropertyNameCaseInsensitive = true };
+                    response.Result = JsonSerializer.Deserialize<GetUserResponse>(resultElement.GetRawText(), options);
+                }
+                else
+                {
+                    response.AddError("Estrutura do JSON inválida: campo 'result' não encontrado.");
+                }
             }
             catch (Exception ex)
             {
