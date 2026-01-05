@@ -72,7 +72,22 @@ app.MapPost("/payments/purchase-game", async (PurchaseGameRequest req, PaymentSe
     if (response.Erros.Any())
         return Results.BadRequest(new { message = response.Erros });
 
-    return Results.Created($"/payments/{response.Result.PaymentId}", response.Result);
+    var approveResponse = await service.ApproveAsync(response.Result.PaymentId.Value);
+
+    if (approveResponse.Erros.Any())
+    {
+        return Results.BadRequest(new
+        {
+            message = "Pagamento criado, mas houve um erro na integração final.",
+            details = approveResponse.Erros
+        });
+    }
+
+    return Results.Created($"/payments/{response.Result.PaymentId}", new
+    {
+        message = "Compra realizada e aprovada com sucesso!",
+        data = response.Result
+    });
 }).WithTags("Payments");
 
 app.MapGet("/payments/{id:guid}", async (Guid id, PaymentService service) =>

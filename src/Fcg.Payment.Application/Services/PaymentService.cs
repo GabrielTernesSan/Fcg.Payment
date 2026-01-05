@@ -62,20 +62,22 @@ namespace Fcg.Payment.Application.Services
 
             if (payment is null || payment.Status != PaymentStatus.Pending)
             {
-                response.AddError("Pagamento não encontrado ou não está pendente.");
+                response.AddError("Pagamento não encontrado ou já processado.");
                 return response;
+            }
+
+            if (payment.GameId.HasValue && payment.GameId != Guid.Empty)
+            {
+                await _clientUser.SubtractBalanceAsync(payment.UserId, payment.Amount);
+            }
+            else
+            {
+                await _clientUser.AddBalanceAsync(payment.UserId, payment.Amount);
             }
 
             payment.Approve();
+
             await _paymentRepository.UpdateAsync(payment, cancellationToken);
-
-            var integrationResult = await _clientUser.AddBalanceAsync(payment.UserId, payment.Amount);
-
-            if (!integrationResult)
-            {
-                response.AddError("Pagamento aprovado localmente, mas falhou ao sincronizar saldo com Fcg.User.");
-                return response;
-            }
 
             response.Result = true;
             return response;
